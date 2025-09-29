@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+#root{
+    @apply max-w-[1200px] w-full my-0 mx-auto
+}
