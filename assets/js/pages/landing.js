@@ -56,6 +56,10 @@ const rightNews = [
     }
 ]
 
+const newsTitle = (str)=>createElement("span", {
+    className: "font-bold"
+}, str)
+
 const pict = (src="")=>createElement("img", {
     className: "bg-black aspect-3/2 object-cover rounded min-w-12 w-full h-auto",
     src
@@ -72,11 +76,11 @@ const leftSide = createElement("section",{
     className: "flex flex-col gap-5"
 }, leftNews.map(item=>createElement("div", {
     className: "flex flex-col gap-3"
-},pict(item.picture),item.title, lists(item.subItem))))
+},pict(item.picture),newsTitle(item.title), lists(item.subItem))))
 
 const bigCenter = (arr)=>createElement("div", {
     className: "flex flex-col gap-3 md:font-bold md:text-2xl"
-}, pict(arr[0].picture),arr[0].title)
+}, pict(arr[0].picture),newsTitle(arr[0].title))
 
 const verticalContainer = (el)=>createElement("div", {
     className: "flex flex-row gap-3 text-sm"
@@ -84,7 +88,7 @@ const verticalContainer = (el)=>createElement("div", {
 
 const centerVertical = (arr)=>arr.map(item => createElement("div", {
     className: "flex-1 flex flex-col gap-3"
-}, pict(item.picture), item.title)).filter((o,i)=>i!==0)
+}, pict(item.picture), newsTitle(item.title))).filter((o,i)=>i!==0)
 
 const center = createElement("section", {
     className: "md:col-span-2 grid gap-3 md:grid-rows-2"
@@ -95,10 +99,10 @@ const center = createElement("section", {
 
 const firstTwo = rightNews.filter((o,i)=>i<2).map(item => createElement("div", {
     className: "flex flex-col gap-3"
-}, pict(item.picture) ,item.title))
+}, pict(item.picture) ,newsTitle(item.title)))
 const lastTwo = rightNews.filter((o,i)=>i>=2).map(item => createElement("div", {
     className: "flex md:flex-row flex-col gap-3 [&>*]:flex-1"
-}, pict(item.picture) ,createElement("div",{},item.title)))
+}, pict(item.picture) ,createElement("div",{},newsTitle(item.title))))
 
 const rightSide = createElement("section", {
     className: "flex flex-col gap-5",
@@ -106,7 +110,7 @@ const rightSide = createElement("section", {
 
 export default function(){
     return createElement("main", {
-        className: "grid grid-cols-1 md:grid-cols-4 gap-5 p-5 md:p-10"
+        className: "grid grid-cols-1 md:grid-cols-4 gap-5 p-5 md:px-10"
     }, [
         leftSide,
         center,
